@@ -1,0 +1,50 @@
+[
+    {
+        "id": "s1",
+        "categoria": "mantenimientoMTB",
+        "nombre": "Service completo MTB",
+        "precio": 60000,
+        "duracionMin": 180,
+        "exclusivo": false
+    },
+    {
+        "id": "s2",
+        "categoria": "mantenimientoRuta",
+        "nombre": "Service completo Ruta",
+        "precio": 75000,
+        "duracionMin": 120,
+        "exclusivo": false
+    },
+    {
+        "id": "s3",
+        "categoria": "armado",
+        "nombre": "Armado de bicicleta desde 0",
+        "precio": 90000,
+        "duracionMin": 240,
+        "exclusivo": true
+    },
+    {
+        "id": "s4",
+        "categoria": "mantenimientoMTB",
+        "nombre": "Purgado de frenos hidráulicos",
+        "precio": 15000,
+        "duracionMin": 60,
+        "exclusivo": false
+    },
+    {
+        "id": "s5",
+        "categoria": "mantenimientoMTB",
+        "nombre": "Centrado de ruedas",
+        "precio": 10000,
+        "duracionMin": 60,
+        "exclusivo": false
+    },
+    {
+        "id": "s6",
+        "categoria": "mantenimientoRuta",
+        "nombre": "Desengrase y limpieza de la transmisión",
+        "precio": 20000,
+        "duracionMin": 90,
+        "exclusivo": false
+    }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "r1",
+    "categoria": "cubiertas",
+    "tipoBici": "mtb",
+    "nombre": "Cubierta MTB 29\" Tubeless",
+    "precio": 45000,
+    "stock": 8
+  },
+  {
+    "id": "r2",
+    "categoria": "cubiertas",
+    "tipoBici": "ruta",
+    "nombre": "Cubierta Ruta 700x25",
+    "precio": 38000,
+    "stock": 12
+  },
+  {
+    "id": "r3",
+    "categoria": "frenos",
+    "tipoBici": "ambos",
+    "nombre": "Pastillas de Freno Disco",
+    "precio": 12000,
+    "stock": 20
+  },
+  {
+    "id": "r4",
+    "categoria": "transmision",
+    "tipoBici": "mtb",
+    "nombre": "Cadena 12 Velocidades",
+    "precio": 28000,
+    "stock": 10
+  },
+  {
+    "id": "r5",
+    "categoria": "transmision",
+    "tipoBici": "ruta",
+    "nombre": "Cassette 11-30T",
+    "precio": 65000,
+    "stock": 5
+  },
+  {
+    "id": "r6",
+    "categoria": "accesorios",
+    "tipoBici": "ambos",
+    "nombre": "Porta Botella Aluminio",
+    "precio": 9500,
+    "stock": 0
+  },
+  {
+    "id": "r7",
+    "categoria": "ruedas",
+    "tipoBici": "mtb",
+    "nombre": "Cámara 29\" Autoválvula",
+    "precio": 7000,
+    "stock": 25
+  }
+]
