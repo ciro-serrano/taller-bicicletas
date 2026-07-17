@@ -1,10 +1,9 @@
 // todas las reglas de negocio (casos límites)
 // funciones puras que devuelven true/false o un mensaje de error. Ej: hayStock(repuestoId, cantidad), turnoDisponible(dia, hora), esCompatibleConCarrito(servicioId). No tocan el DOM ni el estado, solo verifican.
 
-//import 
+//import
 
-import {estado} from "./data.js";
-
+import { estado } from "./data.js";
 
 function cantidadEsValida(cantidad) {
   cantidad = Number(cantidad);
@@ -64,21 +63,27 @@ function turnoEstaDisponible(dia, hora) {
   );
 
   if (ordenExiste !== undefined) {
-    return false //ya hay una orden con ese ia-hora exacto
+    return false; //ya hay una orden con ese ia-hora exacto
   }
 
-  return diaEncontrado.horaios.some(h => h === hora) //esto responde a, : esta hora esta entre las habilitadas por el admin?
+  return diaEncontrado.horaios.some((h) => h === hora); //esto responde a, : esta hora esta entre las habilitadas por el admin?
 }
 
 //carrito: { servicios: [], repuestos: [] }
 
+function carritoTieneItems() {
+  const carritoTieneServicios = Boolean(estado.carrito.servicios.length); //si existe algo devbuelve true 3,5,6 = true
+  const carritoTieneRepuestos = Boolean(estado.carrito.repuestos.length); // si no existe nada devuelve false 0 = false
 
-function carritoTieneItems(){
-    const carritoTieneServicios = Boolean(estado.carrito.servicios.length) //si existe algo devbuelve true 3,5,6 = true
-    const carritoTieneRepuestos = Boolean(estado.carrito.repuestos.length)  // si no existe nada devuelve false 0 = false
-
-    return carritoTieneServicios || carritoTieneRepuestos
+  return carritoTieneServicios || carritoTieneRepuestos;
 }
 
 //export
-export {cantidadEsValida ,hayStockSuficiente, esServicioExclusivo, carritoPermiteAgregar, turnoEstaDisponible, carritoTieneItems }
+export {
+  cantidadEsValida,
+  hayStockSuficiente,
+  esServicioExclusivo,
+  carritoPermiteAgregar,
+  turnoEstaDisponible,
+  carritoTieneItems,
+};

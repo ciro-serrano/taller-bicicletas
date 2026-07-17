@@ -1,13 +1,17 @@
 //funciones que MODIFICAN el estado (agregar al carrito, confirmar orden, avanzar estado)
 //usa validaciones.js antes de modificar estado. Ej: agregarServicio(id) primero valida, después empuja al carrito.
-import { mostrarNotificacion } from "./ui.js";
+import {
+  mostrarNotificacion,
+  renderizarCarrito,
+  renderizarSeguimiento,
+} from "./ui.js";
+import { estado } from "./data.js";
 
 import {
   cantidadEsValida,
   hayStockSuficiente,
   carritoPermiteAgregar,
   turnoEstaDisponible,
-  carritoTieneItems,
 } from "./validaciones.js";
 
 function agregarServicio(servicioId) {
@@ -19,6 +23,7 @@ function agregarServicio(servicioId) {
 
   estado.carrito.servicios.push(servicioId);
   mostrarNotificacion(true, "Servicio agregado al carrito");
+  renderizarCarrito();
 }
 
 function quitarServicio(servicioId) {
@@ -26,6 +31,7 @@ function quitarServicio(servicioId) {
 
   estado.carrito.servicios = nuevoArray;
   mostrarNotificacion(true, "Servicio quitado del carrito correctamente");
+  renderizarCarrito();
 }
 
 function agregarRepuesto(repuestoId, cantidad) {
@@ -48,11 +54,13 @@ function agregarRepuesto(repuestoId, cantidad) {
   if (repuestoEnCarrito !== undefined) {
     repuestoEnCarrito.cantidad += cantidad;
     mostrarNotificacion(true, "Cantidad de repuesto actualizada correctamente");
+    renderizarCarrito();
     return;
   }
 
   estado.carrito.repuestos.push({ id: repuestoId, cantidad: cantidad });
   mostrarNotificacion(true, "Repuesto agregado al carrito correctamente");
+  renderizarCarrito();
 }
 
 function quitarRepuesto(repuestoId) {
@@ -62,6 +70,7 @@ function quitarRepuesto(repuestoId) {
 
   estado.carrito.repuestos = nuevoArray;
   mostrarNotificacion(true, "Repuesto quitado del carrito correctamente");
+  renderizarCarrito();
 }
 
 function calcularTotal() {
@@ -97,6 +106,7 @@ function confirmarTurno(dia, hora) {
 
   estado.carrito.turno = { dia: dia, hora: hora };
   mostrarNotificacion(true, "Turno seleccionado correctamente");
+  renderizarCarrito();
 }
 
 function generarOrden() {
@@ -126,6 +136,8 @@ function generarOrden() {
     turno: { dia: null, hora: null },
   };
   mostrarNotificacion(true, "Orden generada correctamente");
+  renderizarCarrito();
+  renderizarSeguimiento();
 }
 
 function avanzarEstadoOrden(ordenId) {
@@ -140,6 +152,7 @@ function avanzarEstadoOrden(ordenId) {
     case "pendiente":
       orden.estado = "en_reparacion";
       mostrarNotificacion(true, "La orden ha pasado a estado 'en reparación'");
+      renderizarSeguimiento();
       break;
     case "en_reparacion":
       orden.estado = "lista_para_retirar";
@@ -147,6 +160,7 @@ function avanzarEstadoOrden(ordenId) {
         true,
         "La orden ha pasado a estado 'lista para retirar'",
       );
+      renderizarSeguimiento();
       break;
     case "lista_para_retirar":
       mostrarNotificacion(
@@ -160,5 +174,13 @@ function avanzarEstadoOrden(ordenId) {
   }
 }
 
-//function generarOrden()
-//function avanzarEstadoOrden(ordenId)
+export {
+  agregarServicio,
+  quitarServicio,
+  agregarRepuesto,
+  quitarRepuesto,
+  calcularTotal,
+  confirmarTurno,
+  generarOrden,
+  avanzarEstadoOrden,
+};
