@@ -1,39 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Taller-Bicicletas</title>
-</head>
-<body>
+  </head>
+  <body>
+    <header>
+        <button class="nav-vista" data-vista="vista-admin">PANEL ADMIN</button>
 
-    <section id="vista-servicios" class = "vista">
+        <button class="nav-vista" data-vista="vista-seguimiento">VER SEGUIMIENTOS</button>
+
+    </header>
+
+    <aside id="contenedor-carrito">
+        <h2>CARRITO</h2>
+    </aside>
+
+    <main>
+      <section id="vista-servicios" class="vista oculta">
         <h2>SERVICIOS</h2>
+        <button class="nav-vista" data-vista="vista-repuestos">Continuar a repuestos</button>
         <div id="contenedor-servicios"></div>
-    </section>
+      </section>
 
-    <section id = "vista-repuestos"class = "vista">
+      <section id="vista-repuestos" class="vista oculta">
         <h2>REPUESTOS</h2>
+        <button class="nav-vista" data-vista="vista-turnos">Continuar a turnos</button>
         <div id="contenedor-repuestos"></div>
-    </section>
+      </section>
 
-    <section id = "vista-turnos"class = "vista">
+      <section id="vista-turnos" class="vista oculta">
         <h2>TURNOS</h2>
-        <div id="contenedor-turnos"></div> 
-    </section>
-    
-    <section id = "vista-seguimiento"class = "vista">
+        <div id="contenedor-turnos"></div>
+
+        <button class="nav-vista" data-vista="vista-resumen">Continuar al Resumen de compra</button>
+      </section>
+
+      <section id="vista-seguimiento" class="vista oculta">
+        <button class="nav-vista" data-vista="vista-servicios">Volver a servicios</button>
         <h2>SEGUIMIENTO</h2>
-        <div id="contenedor-seguimiento"></div> 
-    </section>
-    
-    <section id = "vista-resumen"class = "vista">
+
+        <div id="contenedor-seguimiento"></div>
+      </section>
+
+      <section id="vista-resumen" class="vista oculta">
         <h2>RESUMEN</h2>
-        <div id="contenedor-resumen"></div> 
-    </section>
+        <form id="form-confirmar-orden">
+          <input type="text" id="input-nombre-cliente" placeholder="Tu nombre" required>
+          <button type="submit">Confirmar orden</button>
+        </form>
+        <div id="contenedor-resumen"></div>
+      </section>
 
+      <section id="vista-admin" class="vista oculta">
+        <button class="nav-vista" data-vista="vista-servicios">Volver a servicios</button>
+        <h2>Panel de administración</h2>
 
-    
-</body>
+        <form id="form-agregar-horario">
+          <input type="date" id="input-dia-admin" required />
+          <input type="time" id="input-hora-admin" required />
+          <button type="submit">Agregar horario</button>
+        </form>
+        <div id="contenedor-admin-disponibilidad"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>

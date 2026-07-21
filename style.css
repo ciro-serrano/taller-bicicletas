@@ -1,0 +1,350 @@
+/*Paleta: acero/grafito + acento óxido (herramienta de taller)*/
+
+:root {
+  --grafito: #23262b;
+  --acero: #3c4147;
+  --acero-claro: #6b727a;
+  --fondo: #f2f1ed;
+  --panel: #ffffff;
+  --oxido: #c65d2e;
+  --oxido-hover: #a84c22;
+  --verde-ok: #3e7d4c;
+  --rojo-error: #b6412e;
+  --borde: #d8d5cd;
+
+  --fuente-titulo: "Georgia", "Times New Roman", serif;
+  --fuente-texto: "Segoe UI", Roboto, sans-serif;
+
+  --radio: 4px;
+  --sombra: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  background-color: var(--fondo);
+  color: var(--grafito);
+  line-height: 1.5;
+}
+
+/*OCULTAR VISTAS*/
+.oculta {
+  display: none !important; /*el important para que ninguna otra cosa pise a esta linea*/
+}
+
+/*HEADER*/
+header {
+  background-color: var(--grafito);
+  padding: 14px 24px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 3px solid var(--oxido);
+}
+
+header::before {
+  content: "🔧 TALLER";
+  font-family: var(--fuente-titulo);
+  font-weight: bold;
+  color: var(--oxido);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-right: auto;
+}
+
+header button {
+  background-color: transparent;
+  color: #f2f1ed;
+  border: 1px solid var(--acero-claro);
+}
+
+header button:hover {
+  background-color: var(--acero);
+  border-color: var(--oxido);
+}
+
+/*LAYOUT GENERAL*/
+main {
+  max-width: 760px;
+  margin: 24px auto;
+  padding: 0 20px 60px;
+}
+
+.vista {
+  background-color: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 24px;
+  box-shadow: var(--sombra);
+}
+
+.vista h2 {
+  font-family: var(--fuente-titulo);
+  margin-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--oxido);
+  color: var(--grafito);
+  letter-spacing: 0.5px;
+}
+
+/*CARRITO (aside fijo)*/
+#contenedor-carrito {
+  position: fixed;
+  top: 90px;
+  right: 24px;
+  width: 250px;
+  background-color: var(--panel);
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--oxido);
+  border-radius: var(--radio);
+  padding: 16px 18px;
+  box-shadow: var(--sombra);
+  font-size: 0.9rem;
+}
+
+#contenedor-carrito h2 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.05rem;
+  margin: 0 0 10px;
+  color: var(--oxido);
+}
+
+#contenedor-carrito p {
+  margin: 6px 0;
+}
+
+.servicio-carrito,
+.repuestos-carrito {
+  border-bottom: 1px dashed var(--borde);
+  padding: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.servicio-carrito p,
+.repuestos-carrito p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/*CARDS: servicios / repuestos*/
+.servicio,
+.repuesto {
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background-color: #fafaf8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.servicio h3,
+.repuesto h3 {
+  font-family: var(--fuente-titulo);
+  margin: 0 0 4px;
+  flex-basis: 100%;
+  font-size: 1.05rem;
+}
+
+.servicio p,
+.repuesto p {
+  margin: 0;
+  color: var(--acero);
+  font-size: 0.9rem;
+}
+
+/*TURNOS*/
+.turno {
+  margin-bottom: 18px;
+}
+
+.turno h3 {
+  font-family: var(--fuente-titulo);
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--grafito);
+}
+
+.horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.horarios button {
+  min-width: 70px;
+}
+
+/*ÓRDENES (seguimiento)*/
+.orden {
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--acero-claro);
+  border-radius: var(--radio);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  background-color: #fafaf8;
+}
+
+.orden h3 {
+  font-family: var(--fuente-titulo);
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.orden p {
+  margin: 3px 0;
+  font-size: 0.9rem;
+}
+
+/*PANEL ADMIN*/
+.dia-admin {
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.dia-admin h4 {
+  font-family: var(--fuente-titulo);
+  margin: 0 0 8px;
+  color: var(--grafito);
+}
+
+.franja-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 4px 8px;
+  margin: 0 6px 6px 0;
+  font-size: 0.9rem;
+  background-color: #fafaf8;
+}
+
+/*FORMULARIOS*/
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+input {
+  font-family: var(--fuente-texto);
+  padding: 8px 10px;
+  border: 1px solid var(--acero-claro);
+  border-radius: var(--radio);
+  font-size: 0.9rem;
+}
+
+input:focus {
+  outline: 2px solid var(--oxido);
+  outline-offset: 1px;
+}
+
+/*BOTONES*/
+button {
+  font-family: var(--fuente-texto);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radio);
+  border: 1px solid var(--acero-claro);
+  background-color: #eceae4;
+  color: var(--grafito);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--oxido);
+  border-color: var(--oxido-hover);
+  color: #fff;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background-color: #e4e2dc;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--oxido);
+  outline-offset: 2px;
+}
+
+/* Botones de navegación entre vistas: acento propio */
+.nav-vista {
+  background-color: var(--grafito);
+  color: #fff;
+  border-color: var(--grafito);
+  margin-bottom: 16px;
+}
+
+.nav-vista:hover:not(:disabled) {
+  background-color: var(--oxido);
+  border-color: var(--oxido-hover);
+}
+
+/* Botón principal de confirmación */
+#form-confirmar-orden button[type="submit"] {
+  background-color: var(--verde-ok);
+  border-color: var(--verde-ok);
+  color: #fff;
+}
+
+#form-confirmar-orden button[type="submit"]:hover {
+  background-color: #2f5f39;
+}
+
+/* Botones de eliminar (X) */
+.eliminar-franja,
+.quitar-servicio,
+.quitar-repuesto {
+  background-color: transparent;
+  border-color: var(--rojo-error);
+  color: var(--rojo-error);
+  padding: 3px 9px;
+  font-size: 0.8rem;
+}
+
+.eliminar-franja:hover,
+.quitar-servicio:hover,
+.quitar-repuesto:hover {
+  background-color: var(--rojo-error);
+  color: #fff;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 900px) {
+  #contenedor-carrito {
+    position: static;
+    width: auto;
+    margin: 16px 20px 0;
+  }
+
+  main {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+}

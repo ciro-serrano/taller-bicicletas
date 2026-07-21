@@ -17,7 +17,10 @@ import {
 function agregarServicio(servicioId) {
   //usamos validaciones antes de modificar el estado
   if (!carritoPermiteAgregar(servicioId)) {
-    mostrarNotificacion(false, "No se puede agregar este servicio al carrito");
+    mostrarNotificacion(
+      false,
+      "No se puede agregar este servicio al carrito porque es EXCLUSIVO",
+    );
     return;
   }
 
@@ -109,10 +112,10 @@ function confirmarTurno(dia, hora) {
   renderizarCarrito();
 }
 
-function generarOrden() {
+function generarOrden(nombreCliente) {
   const orden = {
     id: `ord-${estado.ordenes.length + 1}`,
-    cliente: "nombre-cliente", //esto lo vamos a reemplazar por un input en el futuro
+    cliente: nombreCliente,
     items: {
       servicios: [...estado.carrito.servicios],
       repuestos: [...estado.carrito.repuestos],

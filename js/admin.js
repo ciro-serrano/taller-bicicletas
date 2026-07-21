@@ -1,7 +1,7 @@
 //panel del admin (configurar disponibilidad)
 
-import { mostrarNotificacion } from "./ui";
-import { estado } from "./data";
+import { mostrarNotificacion } from "./ui.js";
+import { estado } from "./data.js";
 
 function agregarHorario(dia, hora) {
   const diaYaExiste = estado.disponibilidad.find((d) => d.dia === dia);
@@ -15,7 +15,6 @@ function agregarHorario(dia, hora) {
       true,
       "Nueva fecha de disponibilidad agregada con exito",
     );
-    //renderpaneladmin
     return;
   }
   //como ya sabemos que si pasa a este bloque es porque el dia si existe, entonces solo verificamos que el horaio no exista en ese dia
@@ -23,7 +22,6 @@ function agregarHorario(dia, hora) {
   if (!horarioYaExiste) {
     diaYaExiste.horarios.push(hora);
     mostrarNotificacion(true, "Horario agregado con exito");
-    //render el panel de admin
     return;
   } else {
     mostrarNotificacion(false, "ese horario ya existe");
@@ -42,19 +40,16 @@ function eliminarFranja(dia, hora) {
     return;
   }
 
-  const diaEncontrado = estado.disponibilidad.find((d) => {
-    d.dia === dia;
-  });
+  const diaEncontrado = estado.disponibilidad.find((d) => d.dia === dia);
   if (!diaEncontrado) {
     mostrarNotificacion(
       false,
-      "no se encontro ninguna coincideencia con el dia seleccionado",
+      "No se encontro ninguna coincidencia con el dia seleccionado",
     );
     return;
   }
   diaEncontrado.horarios = diaEncontrado.horarios.filter((h) => h !== hora);
   mostrarNotificacion(true, "disponibilidad eliminada con exito");
-  //renderpaneladmin
 }
 
 export { agregarHorario, eliminarFranja };

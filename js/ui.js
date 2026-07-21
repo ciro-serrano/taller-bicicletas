@@ -1,5 +1,4 @@
 //todo lo que TOCA el DOM (renderizar, mostrar/ocultar, actualizar pantalla)
-
 // lee estado y pinta pantalla. Nunca decide lógica de negocio, solo muestra lo que ya está decidido.
 import { turnoEstaDisponible } from "./validaciones.js";
 import { estado } from "./data.js";
@@ -9,7 +8,7 @@ import {
   quitarRepuesto,
   quitarServicio,
 } from "./acciones.js";
-
+//importamos libreria
 import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.esm.all.js";
 
 function mostrarNotificacion(exito, mensaje) {
@@ -51,7 +50,7 @@ function renderizarServicios() {
 }
 
 function renderizarRepuestos() {
-  const contenedorRepuestos = document.getElementById("contenedor-repuestos"); //atrapamos el contenedor donde vamos a renderizar los repuestos
+  const contenedorRepuestos = document.getElementById("contenedor-repuestos");
   const htmlRepuestos = estado.repuestos.map((r) => {
     return `
         <div class="repuesto">
@@ -59,6 +58,7 @@ function renderizarRepuestos() {
             <p>Precio: $${r.precio}</p>
             <p>Stock: ${r.stock}</p>
             <button ${r.stock === 0 ? "disabled" : ""}   class="agregar-repuesto" data-id="${r.id}">Agregar</button>
+            <input type="number" class="cantidad-repuesto" value="1">
         </div>
         `;
   });
@@ -67,7 +67,7 @@ function renderizarRepuestos() {
 }
 
 function renderizarTurnos() {
-  const contenedorTurnos = document.getElementById("contenedor-turnos"); //atrapamos el contenedor donde vamos a renderizar los turnos
+  const contenedorTurnos = document.getElementById("contenedor-turnos");
   const htmlTurnos = estado.disponibilidad.map((t) => {
     const horariosDisponibles = t.horarios.map((h) => {
       return `<button ${turnoEstaDisponible(t.dia, h) ? "" : "disabled"} class="seleccionar-turno" data-dia="${t.dia}"  data-hora="${h}">${h}</button>`;
@@ -130,13 +130,58 @@ function renderizarCarrito() {
     <h3>Carrito</h3>
     <p>Servicio: ${servicioCarrito.join("")}</p>
     <p>Repuestos: ${repuestoCarrito.join("")}</p>
-    <p>Total : ${total}</p>`;
+    <p>Total : $${total}</p>`;
 
   contenedorCarrito.innerHTML = htmlCarrito;
 }
 
-//por si quiero agregar turno a la orden ->> <p>Turno: ${o.turno.dia} - ${o.turno.hora}</p>
-//cada map devuelve esto -> [strings,strings,strings]
+function renderizarAdminDisponibilidad() {
+  const contenedorAdmin = document.getElementById(
+    "contenedor-admin-disponibilidad",
+  );
+  const htmlAdmin = estado.disponibilidad.map((d) => {
+    const htmlHorarios = d.horarios.map((h) => {
+      return `
+      <span class="franja-admin">
+      ${h}
+      <button  class="eliminar-franja"  data-dia="${d.dia}"  data-hora="${h}" >X</button>
+      </span>`;
+    });
+
+    return `
+    <div class="dia-admin">
+    <h4>${d.dia}</h4>
+    ${htmlHorarios.join("")}
+    </div>`;
+  });
+  contenedorAdmin.innerHTML = htmlAdmin.join("");
+}
+
+function renderizarResumen(total) {
+  //buscamos el nombre del servicio
+  const servicioCarrito = estado.carrito.servicios.map((id) => {
+    const servicio = estado.servicios.find((o) => o.id === id);
+    return `<p>${servicio.nombre} -  $${servicio.precio}</p>
+    `;
+  });
+  //buscamos el nombre del repuesto
+  const repuestoCarrito = estado.carrito.repuestos.map((item) => {
+    const repuesto = estado.repuestos.find((o) => o.id === item.id);
+    return `<p>${repuesto.nombre} -  $${repuesto.precio} X ${item.cantidad}<p>
+    `;
+  });
+
+  const contenedorResumen = document.getElementById("contenedor-resumen");
+  const turno = estado.carrito.turno;
+
+  contenedorResumen.innerHTML = `
+  <p>Turno: ${turno.dia ? `${turno.dia} - ${turno.hora}` : "Todavía no seleccionaste un turno"}</p>
+  <p>Servicios: ${servicioCarrito.join("")}</p>
+  <p>Repuestos: ${repuestoCarrito.join("")}</p>
+  <p>Total: $${total}</p>
+    `;
+}
+
 export {
   mostrarNotificacion,
   mostrarVista,
@@ -145,4 +190,6 @@ export {
   renderizarTurnos,
   renderizarSeguimiento,
   renderizarCarrito,
+  renderizarAdminDisponibilidad,
+  renderizarResumen,
 };
