@@ -63,10 +63,10 @@ function turnoEstaDisponible(dia, hora) {
   );
 
   if (ordenExiste !== undefined) {
-    return false; //ya hay una orden con ese dia-hora exacto
+    return false; //ya hay una orden con ese ia-hora exacto
   }
 
-  return diaEncontrado.horarios.some((h) => h === hora); //esto responde a : esta hora esta entre las habilitadas por el admin?
+  return diaEncontrado.horarios.some((h) => h === hora); //esto responde a, : esta hora esta entre las habilitadas por el admin?
 }
 
 function carritoTieneItems() {

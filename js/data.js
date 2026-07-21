@@ -23,7 +23,7 @@ async function cargarDatos(url) {
 
     return data;
   } catch (error) {
-    mostrarNotificacion(false, error);
+    mostrarNotificacion(false, error); //luego importamos mostrarNotificacion
     return [];
   }
 }
